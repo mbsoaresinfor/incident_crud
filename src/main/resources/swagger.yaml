@@ -1,0 +1,159 @@
+swagger: "2.0"
+info:
+  description: "Contract Incident"
+  version: "1.0.0"
+  title: "Swagger Incident"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "msoares.infor@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/v2"
+schemes:
+- "https"
+- "http"
+paths:
+  /incident/save:
+    post:
+      tags:
+      - "incident"
+      summary: "Add a new incident"
+      description: ""
+      operationId: "save"
+      consumes:
+      - "application/json"      
+      produces:      
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Incident object"
+          required: true
+          schema:
+            $ref: "#/definitions/IncidentSaveRequest"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/IncidentResponse"
+        "400":
+          description: "error validation"
+          schema:
+            $ref: "#/definitions/Error"
+
+  /incident/update:
+    put:
+      tags:
+      - "incident"
+      summary: "Update a incident"
+      description: ""
+      operationId: "update"
+      consumes:
+      - "application/json"      
+      produces:      
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Incident object"
+        required: true
+        schema:
+          $ref: "#/definitions/IncidentUpdateRequest"
+      responses:
+        "200":
+          description: "ok"          
+        "400":
+          description: "error validation"
+          schema:
+            $ref: "#/definitions/Error"
+  /incident/delete:
+    delete:
+      tags:
+      - "incident"
+      summary: "Delete a incident"
+      description: ""
+      operationId: "delete"            
+      produces:      
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "parameters for delete"
+        required: true
+        schema:
+          $ref: "#/definitions/ParamDeleteIncidentRequest"                
+      responses:
+        "200":
+          description: "ok"
+  /incident/list:
+    get:
+      tags:
+      - "incident"
+      summary: "List incident"
+      description: ""
+      operationId: "list"            
+      produces:      
+      - "application/json"      
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            type: "array"
+            items:
+               $ref: "#/definitions/IncidentResponse"
+      security:
+      - OAuth2: []
+definitions:  
+  IncidentResponse:
+    type: "object"
+    properties:
+      idIncident:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      createdAt:
+        type: "string"
+        exemple: aaaa-mm-dd        
+      updatedAt:
+        type: "string"
+        example: aaaa-mm-dd
+      closedAt3:
+        type: "string"
+        example: aaaa-mm-dd
+  IncidentSaveRequest:
+    type: "object"
+    properties:      
+      name:
+        type: "string"
+      description:
+        type: "string"
+  IncidentUpdateRequest:
+    type: "object"
+    properties:      
+      name:
+        type: "string"
+      description:
+        type: "string"      
+      closedAIncident:
+        type: "boolean" 
+        example: true or false
+      idIncident:
+        type: "integer"
+        format: "int64"
+  Error:
+    type: "object"
+    properties:
+      message:
+        type: "string"  
+  ParamDeleteIncidentRequest:
+    type: "object"
+    properties:
+      idIncident:
+        type: "integer"       
+             
+      
