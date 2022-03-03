@@ -5,7 +5,7 @@ Necessário Java 8
 
 Compilacação por maven: mvn clean install
 
-Aplicação está rodando na porta 9090
+Aplicação está rodando na porta 9090 (http://localhost:9090/swagger-ui.html)
 
 Executar o arquivo br.com.mbs.Main para iniciar a aplicação.
 
