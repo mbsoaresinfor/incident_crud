@@ -12,7 +12,6 @@ import br.com.mbs.entity.Incident;
 import br.com.mbs.model.IncidentResponse;
 import br.com.mbs.model.IncidentSaveRequest;
 import br.com.mbs.model.IncidentUpdateRequest;
-import br.com.mbs.model.ParamDeleteIncidentRequest;
 import br.com.mbs.service.IncidentService;
 
 @RestController
@@ -27,9 +26,8 @@ public class IncidentController implements IncidentApi {
 
 
 	@Override
-	public ResponseEntity<Void> delete(ParamDeleteIncidentRequest body) {
-		Integer idIncident = body.getIdIncident();		
-		incidentService.delete(idIncident);
+	public ResponseEntity<Void> delete(Long id) {				
+		incidentService.delete(id.intValue());
 		return ResponseEntity.ok().build();
 	}
 

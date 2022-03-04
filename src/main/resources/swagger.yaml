@@ -42,7 +42,6 @@ paths:
           description: "error validation"
           schema:
             $ref: "#/definitions/Error"
-
   /incident/update:
     put:
       tags:
@@ -68,7 +67,7 @@ paths:
           description: "error validation"
           schema:
             $ref: "#/definitions/Error"
-  /incident/delete:
+  /incident/delete/{id}:
     delete:
       tags:
       - "incident"
@@ -78,12 +77,11 @@ paths:
       produces:      
       - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        description: "parameters for delete"
+      - in: path
+        name: id
         required: true
-        schema:
-          $ref: "#/definitions/ParamDeleteIncidentRequest"                
+        type: integer
+        format: int64
       responses:
         "200":
           description: "ok"
@@ -103,8 +101,6 @@ paths:
             type: "array"
             items:
                $ref: "#/definitions/IncidentResponse"
-      security:
-      - OAuth2: []
 definitions:  
   IncidentResponse:
     type: "object"
@@ -118,7 +114,7 @@ definitions:
         type: "string"
       createdAt:
         type: "string"
-        exemple: aaaa-mm-dd        
+        example: aaaa-mm-dd        
       updatedAt:
         type: "string"
         example: aaaa-mm-dd
@@ -149,11 +145,7 @@ definitions:
     type: "object"
     properties:
       message:
-        type: "string"  
-  ParamDeleteIncidentRequest:
-    type: "object"
-    properties:
-      idIncident:
-        type: "integer"       
+        type: "string"
+   
              
       
