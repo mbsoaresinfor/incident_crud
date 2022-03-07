@@ -39,11 +39,12 @@ public class IncidentController implements IncidentApi {
 	}
 
 	@Override
-	public ResponseEntity<IncidentResponse> save(IncidentSaveRequest body) {
+	public ResponseEntity<Integer> save(IncidentSaveRequest body) {
 		Incident request = modelMapper.map(body, Incident.class);
 		IncidentResponse response =  modelMapper.map(incidentService.save(request), IncidentResponse.class);		
-		return ResponseEntity.ok(response);
+		return ResponseEntity.ok(response.getIdIncident().intValue());
 	}
+	
 
 	@Override
 	public ResponseEntity<Void> update(IncidentUpdateRequest body) {
@@ -52,6 +53,8 @@ public class IncidentController implements IncidentApi {
 		incidentService.update(request);
 		return ResponseEntity.ok().build();
 	}
+
+	
 	
 	
 }

@@ -35,9 +35,10 @@ paths:
             $ref: "#/definitions/IncidentSaveRequest"
       responses:
         "200":
-          description: "ok"
+          description: "ok"          
           schema:
-            $ref: "#/definitions/IncidentResponse"
+            type: integer
+            example: id incidnet
         "400":
           description: "error validation"
           schema:
